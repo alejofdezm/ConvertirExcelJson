@@ -7,7 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 listDay = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
-listbankBranch = ['BLCR', 'BLNC', 'BLPA', 'BLHN', 'BLRD']
+listbankBranch = ['BLCR', 'BLNI', 'BLPA', 'BLHN', 'BLRD']
 
 const_LunesAViernes = 'Lunes a Viernes'
 const_LunesASabado = 'Lunes a Sábado'
