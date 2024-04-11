@@ -7,6 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 listDay = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
+listbankBranch = ['BLCR', 'BLNC', 'BLPA', 'BLHN', 'BLRD']
 
 const_LunesAViernes = 'Lunes a Viernes'
 const_LunesASabado = 'Lunes a Sábado'
@@ -77,8 +78,11 @@ def convert_excel_to_json(excel_file):
     xls = pd.ExcelFile(excel_file)
 
     # Obtener el nombre de la primera hoja
-    bank_branch = xls.sheet_names[0]
-
+    bank_branch = xls.sheet_names[0 ]
+    
+    if bank_branch not in listbankBranch:
+        return   { "mensaje": "El nombre de la hoja no esta en la lista de sucursales", "sucursales": listbankBranch}  
+    
     # Ahora, puedes leer específicamente la primera hoja si lo deseas
     df = pd.read_excel(excel_file, sheet_name=bank_branch)
     # df = pd.read_excel(excel_file)
