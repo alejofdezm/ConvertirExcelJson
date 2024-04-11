@@ -1,0 +1,360 @@
+[
+    {
+       "bankBranch": "BLNC",
+       "configs": [{
+          "place": "San Jose",
+          "locations": [
+             {
+                "id": 4,
+                "name": "Fischel Automercado Escazú",
+                "description": "San Rafael de Escazú, 100 Norte del Scotiabank, Centro Comercial Atlantis Plaza",
+                "type": "ServiRed",
+                "detail": "Fischel",
+                "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                "lat": 9.92728061,
+                "lng": -84.13387746,
+                "schedules": [
+                   {
+                      "text": "Domingo 9:00 a.m. a 9:00 p.m.",
+                      "days": [
+                         "Domingo"
+                      ],
+                      "hours": {
+                         "min": 900,
+                         "max": 2100
+                      }
+                   },
+                   {
+                      "text": "Lunes a sábado 7:00 a.m. a 10:00 p.m.",
+                      "days": [
+                         "Lunes",
+                         "Martes",
+                         "Miércoles",
+                         "Jueves",
+                         "Viernes",
+                         "Sábado"
+                      ],
+                      "hours": {
+                         "min": 700,
+                         "max": 2200
+                      }
+                   }
+                ]
+             }]
+          }
+       ]
+    },
+    {
+       "bankBranch": "BLCR",
+       "configs": [ 
+          {
+             "place": "Limón",
+             "locations": [
+                {
+                   "id": 20,
+                   "name": "Fischel Guápiles Plz Caribe 2",
+                   "description": "Costado Este Estadio Ebal Rodríguez, Centro Comercial Plaza Caribe",
+                   "type": "ServiRed",
+                   "detail": "Fischel",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 10.2114622,
+                   "lng": -83.78912934,
+                   "schedules": [
+                      {
+                         "text": "Lunes a domingo 9:00 a.m. a 9:00 p.m.",
+                         "days": [
+                            "Domingo",
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 900,
+                            "max": 2100
+                         }
+                      }
+                   ]
+                },
+                {
+                   "id": 20,
+                   "name": "Multiservicios RYG",
+                   "description": "2QF7+RQJ, Limón, Venecia",
+                   "type": "ServiRed",
+                   "detail": "Multiservicios",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 10.024909823459776, 
+                   "lng": -83.23676556148196,
+                   "schedules": [
+                      {
+                         "text": "Lunes a domingo 9:00 a.m. a 9:00 p.m.",
+                         "days": [
+                            "Domingo",
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 900,
+                            "max": 2100
+                         }
+                      }
+                   ]
+                },
+                {
+                   "id": 20,
+                   "name": "Supercomercial Hermanos Rojas",
+                   "description": "6878+57R, Limón, Guácimo, Barrio El INVU",
+                   "type": "ServiRed",
+                   "detail": "Supercomercial",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 10.212489122154324, 
+                   "lng": -83.68269687257198,
+                   "schedules": [
+                      {
+                         "text": "Lunes a domingo 7:00 a.m. a 8:00 p.m.",
+                         "days": [
+                            "Domingo",
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 700,
+                            "max": 2000
+                         }
+                      }
+                   ]
+                },
+                {
+                   "id": 67,
+                   "name": "La Bomba Guápiles",
+                   "description": "Guápiles, frente Más x Menos dentro EKONO",
+                   "type": "ServiRed",
+                   "detail": "La Bomba",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 10.212535,
+                   "lng": -83.784615,
+                   "schedules": [
+                      {
+                         "text": "Domingo 8am a 7pm",
+                         "days": [
+                            "Domingo"
+                         ],
+                         "hours": {
+                            "min": 800,
+                            "max": 1900
+                         }
+                      },
+                      {
+                         "text": "Lunes a Sábado 8:00 am a 8:00 pm",
+                         "days": [
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 800,
+                            "max": 2000
+                         }
+                      }
+                   ]
+                },
+                {
+                   "id": 73,
+                   "name": "La Bomba Limón",
+                   "description": "Limón Centro, Costado Norte Mercado Municipal dentro EKONO",
+                   "type": "ServiRed",
+                   "detail": "La Bomba",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 9.993175,
+                   "lng": -83.028832,
+                   "schedules": [
+                      {
+                         "text": "Lunes a Domingo 8:00am a 8:00pm",
+                         "days": [
+                            "Domingo",
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 800,
+                            "max": 2000
+                         }
+                      }
+                   ]
+                }
+             ]
+          },
+          {
+             "place": "Puntarenas",
+             "locations": [
+                {
+                   "id": 21,
+                   "name": "Fischel Herradura",
+                   "description": "Carretera a Jacó, entrada a Playa Herradura, mano izquierda, Plaza Herradura",
+                   "type": "ServiRed",
+                   "detail": "Fischel",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 9.66118781,
+                   "lng": -84.63913321,
+                   "schedules": [
+                      {
+                         "text": "Lunes a domingo 9:00 a.m. a 9:00 p.m.",
+                         "days": [
+                            "Domingo",
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 900,
+                            "max": 2100
+                         }
+                      }
+                   ]
+                },
+                {
+                   "id": 209,
+                   "name": "Minisuper Chico",
+                   "description": "JV25+C8X, Provincia de Puntarenas, Santa Fe",
+                   "type": "ServiRed",
+                   "detail": "Minisuper",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 9.601116421419755, 
+                   "lng": -85.14163617972649,
+                   "schedules": [
+                      {
+                         "text": "Lunes a domingo 8:00 a.m. a 8:00 p.m.",
+                         "days": [
+                            "Domingo",
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 800,
+                            "max": 2000
+                         }
+                      }
+                   ]
+                },
+                {
+                   "id": 279,
+                   "name": "Super Rinde Más Paquera",
+                   "description": "DIAGONAL LA ESCUELA CR puntarenas, Provincia de Puntarenas, Paquera, 60105",
+                   "type": "ServiRed",
+                   "detail": "Super Rinde Más Paquera",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 9.816613596974088, 
+                   "lng": -84.93391343967309,
+                   "schedules": [
+                      {
+                         "text": "Lunes a domingo 7:00 a.m. a 9:00 p.m.",
+                         "days": [
+                            "Domingo",
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 700,
+                            "max": 2100
+                         }
+                      }
+                   ]
+                },
+                {
+                   "id": 63,
+                   "name": "La Bomba El Roble",
+                   "description": "Carretera principal hacia Barranca, dentro EKONO",
+                   "type": "ServiRed",
+                   "detail": "La Bomba",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 9.977554,
+                   "lng": -84.729393,
+                   "schedules": [
+                      {
+                         "text": "Domingo 8am a 6pm",
+                         "days": [
+                            "Domingo"
+                         ],
+                         "hours": {
+                            "min": 800,
+                            "max": 1800
+                         }
+                      },
+                      {
+                         "text": "Lunes a Sábado 8:00 am a 8:00 pm",
+                         "days": [
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 800,
+                            "max": 2000
+                         }
+                      }
+                   ]
+                },
+                {
+                   "id": 103,
+                   "name": "Banco Lafise",
+                   "description": "JRMR+PWC, Provincia de Puntarenas, Puntarenas, Carmen",
+                   "type": "Sucursal",
+                   "detail": "Sucursal - playa del carmen",
+                   "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                   "lat": 9.634714789114152,    
+                   "lng": -85.15840517705244,
+                   "schedules": [
+                      {
+                         "text": "Lunes a Sábado 9:00 am a 5:30 pm",
+                         "days": [
+                            "Lunes",
+                            "Martes",
+                            "Miércoles",
+                            "Jueves",
+                            "Viernes",
+                            "Sábado"
+                         ],
+                         "hours": {
+                            "min": 900,
+                            "max": 1730
+                         }
+                      }
+                   ]
+                }
+             ]
+          }
+       ]
+    }
+ ]
+ 
