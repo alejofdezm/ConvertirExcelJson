@@ -15,17 +15,17 @@ const_LunesADomingo = 'Lunes a Domingo'
 const_SabadoADomingo = 'Sábado a Domingo'
 
 
-def getDays (days):
-    if(days in listDay):
+def getDays(days):
+    if days in listDay:
         return [days]
-    elif(days == const_LunesAViernes):
-        return  listDay[:5]  
-    elif(days == const_LunesASabado):
-        return  listDay[:6]
-    elif(days == const_LunesADomingo):
-        return  listDay
-    elif(days == const_SabadoADomingo):
-        return  listDay[5:]
+    elif days == const_LunesAViernes:
+        return listDay[:5]
+    elif days == const_LunesASabado:
+        return listDay[:6]
+    elif days == const_LunesADomingo:
+        return listDay
+    elif days == const_SabadoADomingo:
+        return listDay[5:]
 
 
 def convertir_formato(hora_militar):
@@ -34,17 +34,17 @@ def convertir_formato(hora_militar):
     return hora_obj.strftime("%I:%M %p")
 
 
-def getDaysText (days, start_hour, end_hour):
-    if(days in listDay):
-        return days + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour) + " " 
-    elif(days == const_LunesAViernes):
-        return  const_LunesAViernes + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour) + " "
-    elif(days == const_LunesASabado):
-        return  const_LunesASabado + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour) + " "
-    elif(days == const_LunesADomingo):
-        return  const_LunesADomingo + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour) + " "
-    elif(days == const_SabadoADomingo):
-        return  const_SabadoADomingo + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour) + " " 
+def getDaysText(days, start_hour, end_hour):
+    if days in listDay:
+        return days + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour)
+    elif days == const_LunesAViernes:
+        return const_LunesAViernes + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour)
+    elif days == const_LunesASabado:
+        return const_LunesASabado + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour)
+    elif days == const_LunesADomingo:
+        return const_LunesADomingo + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour)
+    elif days == const_SabadoADomingo:
+        return const_SabadoADomingo + " de " + convertir_formato(start_hour) + " a " + convertir_formato(end_hour)
 
 
 def convert_schedule_text_to_json(days, start_hour, end_hour):
@@ -59,39 +59,40 @@ def convert_schedule_text_to_json(days, start_hour, end_hour):
     return schedule
 
 
-def convert_excel_row_to_json(row, group): 
-    location_json = {
-        "name": row[1],
-        "description": row[2],
-        "type": row[3],
-        "detail": row[4],
-        "icon": "ubicacionCarritoCompra-LAFISECR.png",
-        "lat": row[5],
-        "lng": row[6],
-        "schedules": group.apply(lambda row: convert_schedule_text_to_json(row['Dias'], row['HoraDesde'], row['HoraHasta']), axis=1).tolist()  # Convertir a JSON
-    }
-    return location_json
+def convert_excel_row_to_json(row, group):
+    locations = []
+    for _, grp_row in group.iterrows():
+        location_json = {
+            "id": str(uuid4()),
+            "name": grp_row['Nombre'],
+            "description": grp_row['Descripcion'],
+            "type": grp_row['Tipo'],
+            "detail": grp_row['Detalle'],
+            "icon": "ubicacionCarritoCompra-LAFISECR.png",
+            "lat": grp_row['Lat'],
+            "lng": grp_row['Lng'],
+            "schedules": [convert_schedule_text_to_json(grp_row['Dias'], grp_row['HoraDesde'], grp_row['HoraHasta'])]
+        }
+        locations.append(location_json)
+    return locations
 
 
 def convert_excel_to_json(excel_file):
-    
     xls = pd.ExcelFile(excel_file)
 
-    # Obtener el nombre de la primera hoja
-    bank_branch = xls.sheet_names[0 ]
-    
+    bank_branch = xls.sheet_names[0]
+
     if bank_branch not in listbankBranch:
-        return   { "mensaje": "El nombre de la hoja no esta en la lista de sucursales", "sucursales": listbankBranch}  
-    
-    # Ahora, puedes leer específicamente la primera hoja si lo deseas
+        return {"mensaje": "El nombre de la hoja no esta en la lista de sucursales", "sucursales": listbankBranch}
+
     df = pd.read_excel(excel_file, sheet_name=bank_branch)
-    # df = pd.read_excel(excel_file)
     
     json_template = {
         "bankBranch": bank_branch,
         "configs": []
     }
-    grouped = df.groupby(['Ubicacion', 'Nombre', 'Descripcion', 'Tipo', 'Detalle', 'Lat', 'Lng'])
+
+    grouped = df.groupby(['Ubicacion'])
 
     for place, group in grouped:
         place_config = {
@@ -110,9 +111,8 @@ def upload_file():
     file = request.files['file']
     if file.filename == '':
         return jsonify(error="No selected file"), 400
-    if file: 
+    if file:
         json_data = convert_excel_to_json(file)
-            
         return jsonify(json_data), 200
 
 
