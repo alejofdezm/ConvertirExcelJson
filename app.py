@@ -59,22 +59,35 @@ def convert_schedule_text_to_json(days, start_hour, end_hour):
     return schedule
 
 
-def convert_excel_row_to_json(row, group):
-    locations = []
+def convert_excel_row_to_json(group):
+    locations_dict = {}
     for _, grp_row in group.iterrows():
-        location_json = {
-            "id": str(uuid4()),
-            "name": grp_row['Nombre'],
-            "description": grp_row['Descripcion'],
-            "type": grp_row['Tipo'],
-            "detail": grp_row['Detalle'],
-            "icon": "ubicacionCarritoCompra-LAFISECR.png",
-            "lat": grp_row['Lat'],
-            "lng": grp_row['Lng'],
-            "schedules": [convert_schedule_text_to_json(grp_row['Dias'], grp_row['HoraDesde'], grp_row['HoraHasta'])]
-        }
-        locations.append(location_json)
-    return locations
+        location_key = (
+            grp_row['Nombre'],
+            grp_row['Descripcion'],
+            grp_row['Tipo'],
+            grp_row['Detalle'],
+            "ubicacionCarritoCompra-LAFISECR.png",
+            grp_row['Lat'],
+            grp_row['Lng'],
+        )
+        schedule = convert_schedule_text_to_json(grp_row['Dias'], grp_row['HoraDesde'], grp_row['HoraHasta'])
+        if location_key in locations_dict:
+            locations_dict[location_key]['schedules'].append(schedule)
+        else:
+            location_json = {
+                "id": str(uuid4()),
+                "name": grp_row['Nombre'],
+                "description": grp_row['Descripcion'],
+                "type": grp_row['Tipo'],
+                "detail": grp_row['Detalle'],
+                "icon": "ubicacionCarritoCompra-LAFISECR.png",
+                "lat": grp_row['Lat'],
+                "lng": grp_row['Lng'],
+                "schedules": [schedule]
+            }
+            locations_dict[location_key] = location_json
+    return list(locations_dict.values())
 
 
 def convert_excel_to_json(excel_file):
@@ -93,11 +106,11 @@ def convert_excel_to_json(excel_file):
     }
 
     grouped = df.groupby(['Ubicacion'])
-
-    for place, group in grouped:
+    
+    for place, group in grouped: 
         place_config = {
             "place": place[0],
-            "locations": convert_excel_row_to_json(place, group)
+            "locations": convert_excel_row_to_json(group)
         }
         json_template['configs'].append(place_config)
 
