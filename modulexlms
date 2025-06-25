@@ -1,6 +1,6 @@
 '====================================================================================
 ' MÓDULO PARA SELECCIONAR, COMPRIMIR Y ENVIAR PDFs A UN API
-' VERSIÓN: 2.0 (Con función de compresión mejorada y robusta)
+' VERSIÓN: 2.1 (Petición API mejorada con WinHttp)
 ' Creado por: Asistente de IA de Google
 ' Fecha: 25/06/2025
 '
@@ -104,17 +104,25 @@ Sub ComprimirYEnviarAPI()
     zipData = objStream.Read
     objStream.Close
     
-    ' --- 4. Enviar el archivo ZIP al API ---
+    ' --- 4. Enviar el archivo ZIP al API (VERSIÓN MEJORADA) ---
     Application.StatusBar = "Enviando datos al servidor API..."
     
     Dim objHttp As Object
-    Set objHttp = CreateObject("MSXML2.XMLHTTP.6.0")
+    ' CAMBIO: Se usa WinHttp.WinHttpRequest.5.1 que es más moderno y compatible con protocolos de seguridad actuales (TLS 1.2+).
+    ' Esto resuelve la mayoría de los problemas de conexión que fallan en VBA pero funcionan en Postman.
+    Set objHttp = CreateObject("WinHttp.WinHttpRequest.5.1")
     
     On Error GoTo ErrorAPI
     
     objHttp.Open "POST", API_URL, False
+    
+    ' CAMBIO: Se añaden cabeceras que a menudo son necesarias y que Postman incluye automáticamente.
     objHttp.SetRequestHeader "x-api-key", API_KEY
+    objHttp.SetRequestHeader "User-Agent", "Excel-VBA-Client/1.0" ' Un User-Agent personalizado es buena práctica.
+    objHttp.SetRequestHeader "Content-Length", LenB(zipData)      ' Es importante especificar la longitud del cuerpo de la petición.
     objHttp.SetRequestHeader "Content-Type", "application/zip"
+    
+    ' El método .send funciona igual, pero ahora la petición es mucho más robusta.
     objHttp.send zipData
     
     Application.StatusBar = "Procesando respuesta del servidor..."
@@ -143,7 +151,8 @@ Sub ComprimirYEnviarAPI()
 
 ErrorAPI:
     MsgBox "No se pudo conectar al API." & vbCrLf & _
-           "Verifica la URL del API y tu conexión a internet.", vbCritical, "Error de Conexión"
+           "Verifica la URL del API y tu conexión a internet." & vbCrLf & _
+           "Error: " & Err.Description, vbCritical, "Error de Conexión"
 
 Cleanup:
     ' --- 6. Limpieza de objetos y archivos temporales ---
@@ -253,5 +262,3 @@ Private Function ParsearJsonSimple(jsonString As String, clave As String) As Str
 ParseError:
     ParsearJsonSimple = "[No se encontró el valor para '" & clave & "']"
 End Function
-
-
